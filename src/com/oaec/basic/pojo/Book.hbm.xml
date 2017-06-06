@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.basic.pojo" schema="chqj">
+	<class name="Book" table="BOOK">
+		<id name="isbn" column="ISBN" type="string">
+			<!-- <generator class="uuid.hex"></generator> -->
+			<!-- <generator class="assigned"></generator>自定义主键约束 -->
+			<!-- <generator class="native"><param name="sequence">book_seq</param></generator> -->
+			<generator class="increment"></generator>
+		</id>
+		<property name="name" type="string" column="NAME"></property>
+		
+		<!-- 联合主键的设置 -->
+		<!-- <composite-id>
+			<key-property name="isbn" type="string" column="ISBN"></key-property>
+			<key-property name="name" type="string" column="NAME"></key-property>
+		</composite-id> -->
+		<property name="author" type="string" column="AUTHOR"></property>
+		<property name="price" type="double" column="PRICE"></property>
+	</class>
+</hibernate-mapping>
