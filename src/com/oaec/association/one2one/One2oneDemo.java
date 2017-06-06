@@ -10,12 +10,12 @@ import com.oaec.common.HibernateSessionFactory;
 public class One2oneDemo {
 	public static void main(String[] args) {
 		Person p = new Person();
-		p.setName("中巴");
+		p.setName("哈方法");
 		p.setGender("男");
 		p.setAge(34);
 
 		Passport pp = new Passport();
-		pp.setBh("China");
+		pp.setBh("GB1231323414");
 
 		p.setPassport(pp);
 		pp.setPerson(p);
@@ -25,16 +25,16 @@ public class One2oneDemo {
 		try {
 //			级联增加
 			trans = session.beginTransaction();
-			// session.save(p);
+//			 session.save(p);
 //			级联查询
-			Person person = (Person) session.get(Person.class, 7L);
-			// System.out.println(person);
+			Person person = (Person) session.get(Person.class, 1L);
+//			 System.out.println(person);
 
 			// 级联更新
-			// person.setName("Alva Chen");
-			// person.setAge(21);
-			// person.getPassport().setBh("gb123345");
-			// session.update(person);
+//			 person.setName("Alva Chen");
+//			 person.setAge(21);
+//			 person.getPassport().setBh("gb123345");
+//			 session.update(person);
 
 			// 级联删除
 			session.delete(person);

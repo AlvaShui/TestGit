@@ -45,7 +45,11 @@
     <!-- mapping file -->
     <mapping resource="com/oaec/basic/pojo/Student.hbm.xml"/>
     <mapping resource="com/oaec/basic/pojo/Book.hbm.xml"/>
-    <mapping resource="com/oaec/association/one2one/pojo/person_FK.hbm.xml"/>
-    <mapping resource="com/oaec/association/one2one/pojo/passport_FK.hbm.xml"/>
+    <!-- <mapping resource="com/oaec/association/one2one/pojo/person_FK.hbm.xml"/>
+    <mapping resource="com/oaec/association/one2one/pojo/passport_FK.hbm.xml"/> -->
+    <mapping resource="com/oaec/association/one2one/pojo/person_PK.hbm.xml"/>
+    <mapping resource="com/oaec/association/one2one/pojo/passport_PK.hbm.xml"/>
+    <mapping resource="com/oaec/association/one2many/pojo/Order.hbm.xml"/>
+    <mapping resource="com/oaec/association/one2many/pojo/OrderLine.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

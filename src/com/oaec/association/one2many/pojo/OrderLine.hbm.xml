@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.association.one2many.pojo">
+	<class name="OrderLine" table="T_ORDERLINE">
+		<id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">t_orderline_seq</param>
+			</generator>
+		</id>
+		
+		<property name="price" type="double" column="PRICE"/>
+		<property name="quantity" type="long" column="QUANTITY"/>
+		<property name="product" type="string" column="PRODUCT"/>
+		
+		<many-to-one name="order" column="ORDER_ID"/>
+	</class>
+</hibernate-mapping>

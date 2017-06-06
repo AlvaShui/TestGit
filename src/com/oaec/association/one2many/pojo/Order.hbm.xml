@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.association.one2many.pojo">
+	<class name="Order" table="T_ORDER">
+		<id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">t_order_seq</param>
+			</generator>
+		</id>
+		
+		<property name="ordered_date" type="date" column="ORDERED_DATE"/>
+		<property name="shipped_date" type="date" column="SHIPPED_DATE"/>
+		<property name="total" type="double" column="TOTAL"/>
+		
+		<!-- inverse属性默认是false，表示子表的外键由父表决定，会执行update，若设为true，则由子表决定，不执行update -->
+		<set name="orderlines" cascade="all" inverse="true">
+			<key column="ORDER_ID"/>
+			<one-to-many class="OrderLine" />
+		</set>
+	</class>
+</hibernate-mapping>
