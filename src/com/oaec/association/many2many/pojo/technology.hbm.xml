@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.association.many2many.pojo">
+	<class name="Technology" table="CT_TECHNOLOGY">
+		<id name="id" type="long" column="ID">
+			<generator class="sequence">
+				<param name="sequence">
+					ct_technology_seq
+				</param>
+			</generator>
+		</id>
+		
+		<property name="name" type="string" column="NAME"/>
+		<property name="category" type="string" column="CATEGORY"/>
+		
+		<set name="engis" table="CT_ENGINEER_TECHNOLOGY">
+			<key column="TECHNOLOGY_ID"/>
+			<many-to-many class="Engineer" column="ENGINEER_ID"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
