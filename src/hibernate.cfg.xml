@@ -53,7 +53,9 @@
     <mapping resource="com/oaec/association/one2many/pojo/OrderLine.hbm.xml"/>
     <mapping resource="com/oaec/association/many2many/pojo/engineer.hbm.xml"/>
     <mapping resource="com/oaec/association/many2many/pojo/technology.hbm.xml"/>
-    <mapping resource="com/oaec/inheritance/pojo/extends.hbm.xml"/>
+   <!--  <mapping resource="com/oaec/inheritance/pojo/extends.hbm.xml"/> -->
+<!--     <mapping resource="com/oaec/inheritance/pojo/joindetail.hbm.xml"/> -->
+    <mapping resource="com/oaec/inheritance/pojo/uniondetail.hbm.xml"/>
     
   </session-factory>
 </hibernate-configuration>

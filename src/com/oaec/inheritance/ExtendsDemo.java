@@ -10,6 +10,10 @@ import com.oaec.inheritance.pojo.BankAccount;
 import com.oaec.inheritance.pojo.BillingDetails;
 import com.oaec.inheritance.pojo.CreditCard;
 
+/**
+ * @author Administrator
+ *所有类映射一张表，映射文件用<subclass>
+ */
 public class ExtendsDemo {
 
 	public static void main(String[] args) {
@@ -34,12 +38,12 @@ public class ExtendsDemo {
 		try{
 			trans = session.beginTransaction();
 //			session.save(bd);
-			session.save(ba);
-			session.save(cc);
+//			session.save(ba);
+//			session.save(cc);
 			
-			/*BillingDetails account = 
-					(BillingDetails)session.get(BillingDetails.class, 5L);
-			System.out.println(account);*/
+			BillingDetails account = 
+					(BillingDetails)session.get(BillingDetails.class, 1L);
+			System.out.println(account);
 		
 			trans.commit();
 		}catch(Exception e){
