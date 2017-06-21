@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Maping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.transaction.pojo">
+	<class name="AccountTimeStamp" table="accounts_timestamp">
+		<id name="id" type="long" column="id">
+			<generator class="increment"/>
+		</id>
+		<timestamp name="timeStamp" column="time_stamp"></timestamp>
+		<property name="code" column="code" type="long"></property>
+		<property name="name" column="name" type="string"></property>
+		<property name="balance" column="balance" type="float"></property>
+	</class>
+</hibernate-mapping>

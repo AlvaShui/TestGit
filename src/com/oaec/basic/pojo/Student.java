@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-	private long id;
+	private Long id;
 	private String name;
 	private String sex;
 	private int age;
@@ -13,7 +13,7 @@ public class Student implements Serializable {
 		super();
 	}
 
-	public Student(long id, String name, String sex, int age) {
+	public Student(Long id, String name, String sex, int age) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -21,11 +21,11 @@ public class Student implements Serializable {
 		this.age = age;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

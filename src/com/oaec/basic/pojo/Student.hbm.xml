@@ -5,6 +5,7 @@
 <hibernate-mapping package="com.oaec.basic.pojo" schema="chqj">
 
     <class name="Student" table="STUDENT" >
+        <!-- <cache usage="read-only"/> -->
         <id name="id" column="ID" type="long">
             <generator class="sequence">
 				<param name="sequence">student_seq</param>

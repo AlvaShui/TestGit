@@ -14,6 +14,20 @@
     <property name="connection.username">chqj</property>
     <property name="connection.password">123</property>
     
+    <!-- 隔离级别，默认为2，避免了脏读 -->
+    <property name="hibernate.connection.isolation">2</property>
+    
+ 	<property name="hibernate.jdbc.batch_size">50</property>    
+    <!-- 配置二级缓存的实现cacheProvider -->
+    <!-- 配置hibernate3.x的二级缓存 -->
+    <!-- <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> -->
+    <!-- 配置hibernate4.x的二级缓存 -->
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+    <!-- 配置是否启用二级缓存，4.x默认是启用，3.x默认是不启用 -->
+    <property name="hibernate.cache.use_second_level_cache">true</property>
+    <!-- 配置查询缓存功能(针对Query和Criteria的二级缓存查询) -->
+    <property name="cache.use_query_cache">true</property>
+    
     <!-- 3.绑定所配置数据源的jndi名字  web项目中用Tomcat配置的数据源 。若用此方法，则1方法中的不需要了-->
     <!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/test</property> -->
     <!-- <property name="hibernate.connection.username">chqj</property> -->
@@ -55,7 +69,21 @@
     <mapping resource="com/oaec/association/many2many/pojo/technology.hbm.xml"/>
    <!--  <mapping resource="com/oaec/inheritance/pojo/extends.hbm.xml"/> -->
 <!--     <mapping resource="com/oaec/inheritance/pojo/joindetail.hbm.xml"/> -->
-    <mapping resource="com/oaec/inheritance/pojo/uniondetail.hbm.xml"/>
+    <!-- <mapping resource="com/oaec/inheritance/pojo/uniondetail.hbm.xml"/> -->
+    <mapping resource="com/oaec/component/pojo/component.hbm.xml"/>
+    <mapping resource="com/oaec/collection/set/itemsSet.hbm.xml"/>
+    <mapping resource="com/oaec/collection/list/itemsList.hbm.xml"/>
+    <mapping resource="com/oaec/collection/bag/itemsBag.hbm.xml"/>
+    <mapping resource="com/oaec/collection/map/itemsMap.hbm.xml"/>
+    <mapping resource="com/oaec/transaction/pojo/account.hbm.xml"/>
+    <mapping resource="com/oaec/transaction/pojo/accountVersion.hbm.xml"/>
+    <mapping resource="com/oaec/transaction/pojo/accountTimeStamp.hbm.xml"/>
+    
+    <!-- 配置此缓存后就不需在hbm文件的class目录下配置<cache> -->
+    <!-- <class-cache usage="read-only" class="com.oaec.basic.pojo.Student"/> -->
+    <!-- <class-cache usage="read-only" class="com.oaec.association.one2many.pojo.Order"/> -->
+    <!-- <collection-cache usage="read-only" collection="com.oaec.association.one2many.pojo.Order.orderlines"/> -->
+    <!-- <class-cache usage="read-only" class="com.oaec.association.one2many.pojo.OrderLine"/> -->
     
   </session-factory>
 </hibernate-configuration>

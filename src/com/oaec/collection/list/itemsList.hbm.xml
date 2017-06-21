@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.oaec.collection.list">
+	<class name="ItemsList" table="items_list">
+		<id name="id" column="id" type="long">
+			<generator class="increment"/>
+		</id>
+		<property name="name" column="name" type="string"/>
+		
+		<list name="imagesList" table="images_list" cascade="all">
+			<key column="items_id"/>
+			<index column="position"/>
+			<element column="filename" not-null="true" type="string"/>
+		</list>
+	</class>
+</hibernate-mapping>
