@@ -16,6 +16,14 @@ public class Address {
 		this.street = street;
 		this.customer = customer;
 	}
+	
+//这里新增了一个构造方法
+	public Address(String province, String city, String street) {
+		super();
+		this.province = province;
+		this.city = city;
+		this.street = street;
+	}
 
 	public String getProvince() {
 		return province;

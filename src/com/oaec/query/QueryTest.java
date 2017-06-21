@@ -6,8 +6,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.oaec.association.one2many.pojo.Order;
+import com.oaec.association.one2many.pojo.OrderLine;
 import com.oaec.basic.pojo.Student;
 import com.oaec.common.HibernateSessionFactory;
+import com.oaec.component.pojo.Address;
+import com.oaec.component.pojo.Customer;
 
 public class QueryTest {
 	Query query = null;
@@ -167,14 +171,71 @@ public class QueryTest {
 		}
 		
 	}
-	//
+	//连接查询
+	public void joinQuery(Long id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction trans = null;
+		
+		try{
+			trans = session.beginTransaction();
+			Query query = session.createQuery("from Order o left outer join o.orderlines where o.id=?1");
+			query.setParameter("1", id);
+			List<Object[]> list = query.list();
+			for (Object[] objects : list) {
+				Order order = (Order) objects[0];
+				System.out.println(order);
+				OrderLine orderLine = (OrderLine) objects[1];
+				System.out.println(orderLine);
+			}
+			
+			trans.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+		
+	}
+	
+//		投影查询
+	public void projectionQuery(Long id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction trans = null;
+		
+		try{
+			trans = session.beginTransaction();
+			Query query = session.createQuery("select c.name,c.address.city,c.address.street from Customer c where c.id = ?1");
+			query.setParameter("1", id);
+			List<Object[]> list1 = query.list();
+			for (Object[] objects : list1) {
+				for (Object object : objects) {
+					System.out.print(object+" ");
+				}
+				System.out.println();
+			}
+			
+			query = session.createQuery(
+					"select new com.oaec.component.pojo.Address(c.address.province,c.address.city,c.address.street) from Customer c where c.id = ?1");
+			query.setParameter("1", id);
+			List<Address> list2 = query.list();
+			for (Address address : list2) {
+				System.out.println(address);
+			}
+			
+			trans.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+	}
 	
 	public static void main(String[] args) {
 //		new QueryTest().queryObj(2L);
 //		new QueryTest().queryList();
 //		new QueryTest().dynamicQuery("男", 10);
 //		new QueryTest().SQLQuery();
-		new QueryTest().pagesQuery();
+//		new QueryTest().pagesQuery();
+//		new QueryTest().joinQuery(1L);
+		new QueryTest().projectionQuery(1L);
 		
 		
 		
