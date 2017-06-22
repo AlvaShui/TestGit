@@ -12,7 +12,12 @@ import org.hibernate.criterion.Restrictions;
 import com.oaec.basic.pojo.Student;
 import com.oaec.common.HibernateSessionFactory;
 
+/**
+ * @author Administrator
+ *	QBC≤È—Ø
+ */
 public class CriteriaTest {
+	
 
 	public void QBCQuery(String name,int age) {
 		Session session = HibernateSessionFactory.getSession();

@@ -16,5 +16,9 @@
         <property name="sex" type="string" column="SEX"/>
         <property name="age" type="int" column="AGE"/>
     </class>
+	
+	<query name="namedStudentQuery">
+		<![CDATA[from Student s where s.id = ?1]]>
+	</query>
 
 </hibernate-mapping>

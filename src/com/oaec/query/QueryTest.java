@@ -12,6 +12,7 @@ import com.oaec.basic.pojo.Student;
 import com.oaec.common.HibernateSessionFactory;
 import com.oaec.component.pojo.Address;
 import com.oaec.component.pojo.Customer;
+import com.oaec.inheritance.pojo.BillingDetails;
 
 public class QueryTest {
 	Query query = null;
@@ -178,7 +179,7 @@ public class QueryTest {
 		
 		try{
 			trans = session.beginTransaction();
-			Query query = session.createQuery("from Order o left outer join o.orderlines where o.id=?1");
+			Query query = session.createQuery("from Order o left outer join o.orderlines ol where ol.order.id=?1");
 			query.setParameter("1", id);
 			List<Object[]> list = query.list();
 			for (Object[] objects : list) {
@@ -228,6 +229,62 @@ public class QueryTest {
 		}
 	}
 	
+	//过滤查询
+	public void filterQuery(Long id) {
+		Session session = HibernateSessionFactory.getSession();
+		Transaction trans = null;
+		
+		try{
+			trans = session.beginTransaction();
+			Order order = (Order) session.get(Order.class, id);
+			Query query = session.createFilter(order.getOrderlines(), "where this.quantity >= 7");
+			List list = query.list();
+			System.out.println(list);
+			
+			trans.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+	}
+	
+	//命名查询
+		public void namedQuery(Long id) {
+			Session session = HibernateSessionFactory.getSession();
+			Transaction trans = null;
+			
+			try{
+				trans = session.beginTransaction();
+				Query query = session.getNamedQuery("namedStudentQuery");
+				query.setParameter("1", id);
+				List list = query.list();
+				System.out.println(list);
+				
+				trans.commit();
+			}catch(Exception e) {
+				e.printStackTrace();
+				trans.rollback();
+			}
+		}
+	
+	//多态查询
+	public void polymorphismQuery(){
+		Session session = HibernateSessionFactory.getSession();
+		Transaction trans = null;
+		
+		try{
+			trans = session.beginTransaction();
+			Query query = session.createQuery("from BillingDetails where id = 22L");
+			List<BillingDetails> list = query.list();
+			System.out.println(list);
+			
+			trans.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			trans.rollback();
+		}
+	}
+		
 	public static void main(String[] args) {
 //		new QueryTest().queryObj(2L);
 //		new QueryTest().queryList();
@@ -235,8 +292,10 @@ public class QueryTest {
 //		new QueryTest().SQLQuery();
 //		new QueryTest().pagesQuery();
 //		new QueryTest().joinQuery(1L);
-		new QueryTest().projectionQuery(1L);
-		
+//		new QueryTest().projectionQuery(1L);
+//		new QueryTest().filterQuery(1l);
+//		new QueryTest().namedQuery(2l);
+		new QueryTest().polymorphismQuery();
 		
 		
 		
